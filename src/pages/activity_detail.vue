@@ -4,82 +4,85 @@
     <div class="idle-top-wap">
       <div class="idle-top">
         <div class="left">
-          <h5>发布问题</h5>
-          <span>我都想笑了</span>
+          <h5>活动</h5>
+          <span>欢聚·欢笑·兴趣</span>
         </div>
         <div class="t_title">
           <i class="iconfont icon-smile"></i>
-          <span>说出你的问题吧</span>
+          <span>我都想笑了</span>
         </div>
       </div>
     </div>
+    <el-image style="width: 100%; height:300px" :src="activity.img"></el-image>
     <div class="container">
-      <el-form label-width="80px" :model="formLabel">
-        <el-form-item label="问题标题">
-          <el-input v-model="formLabel.title" placeholder="请输入你的标题"></el-input>
-        </el-form-item>
-        <el-form-item label="问题内容">
-          <el-input
-            type="textarea"
-            placeholder="请输入内容，最多两百字哦~"
-            v-model="textarea"
-            maxlength="200"
-            show-word-limit
-            resize="none"
-            rows="5"
-          ></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="sub">立即提问</el-button>
-        </el-form-item>
-      </el-form>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <div class="top">
+            <div class="title">{{activity.title}}</div>
+            <div class="ptime">发布时间：{{activity.ptime}}</div>
+          </div>
+          <div class="col-2"></div>
+        </div>
+      </div>
     </div>
+    <v-backtop></v-backtop>
     <v-footer></v-footer>
   </div>
 </template>
+
 <script>
 import axios from "axios";
 import vHead from "../components/head";
+import vAdd from "../components/add_top";
 import vFooter from "../components/footer";
+import vBacktop from "../components/backtop";
 export default {
   data() {
     return {
-      formLabel: {
-        title: "",
-        textarea: ""
-      }
+      id: this.$route.query.id,
+      activity: {}
     };
   },
-  components: {
-    vFooter,
-    vHead
-  },
-  created() {},
-  methods: {
-    sub() {
-      //提交内容
-      axios.post("",{
-          data:{
-              title:this.title,
-              content:this.textarea
-          }
-      }).then(res=>{
-
-      }).catch(res=>{
-
+  created() {
+    axios
+      .get("msg", {})
+      .then(res => {
+        this.activity = res.data.hd[0];
+        console.log(res.data.hd);
       })
-    }
-  }
+      .catch(err => {});
+  },
+  components: {
+    vHead,
+    vAdd,
+    vFooter,
+    vBacktop
+  },
+  methods: {}
 };
 </script>
 <style scoped lang="scss">
-.el-form {
-  margin-top: 50px;
-  width: 500px;
-  margin-left: 25%;
-  button {
-    float: right;
+.container {
+  margin-top: 20px;
+  .top{
+      border-bottom: 1px solid #e5e5e5;
+      padding-top: 10px;
+      padding-bottom: 30px;
   }
+  .title {
+    font-size: 40px;
+    color: #0f2540;
+    line-height: 56px;
+  }
+  .ptime{
+      font-size: 14px;
+    color: #0F2540;
+  }
+}
+.main {
+  width: 100%;
+  padding: 10px;
 }
 .idle-top-wap {
   margin-top: 60px;

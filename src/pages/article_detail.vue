@@ -186,13 +186,25 @@ export default {
             }
           })
           .then(res => {
-            alert("评论成功");
+             this.$message({
+          message: '发布成功！',
+          type: 'success',
+          offset:"80"
+        });
           })
           .catch(e => {
-            alert("评论失败！");
+           this.$message({
+          message: '评论失败！',
+          type: 'warning',
+          offset:"80"
+        });
           });
       } else {
-        alert("评论不能为空！");
+        this.$message({
+          message: '评论不能为空',
+          type: 'warning',
+          offset:"80"
+        });
       }
     }
   },

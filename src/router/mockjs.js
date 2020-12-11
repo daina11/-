@@ -152,10 +152,23 @@ let comment = {
  let img=[]
  //问答
  let wd=[]
+ //活动
+ let hd=[{
+     id:1,
+     title:Random.csentence(5, 50),//活动标题
+     ptime:Random.datetime('MM-dd'),//发布时间
+    dizhi:Random.county(true),//活动地址
+    renshu:Random.integer(1,999),//活动人数
+    jianjie:Random.csentence(5, 300),//活动简介
+    img: Random.dataImage(),//背景图
+
+ }]
  for(let i =1;i<=9;i++){
      let wd1={
          id:i,
+         pname:Random.csentence(1, 5),
          title: Random.csentence(5, 50),
+         pimg:Random.dataImage(),//提问者头像
          content: Random.csentence(10, 500),
          pnumber:Random.integer(1,9990),//评论数量
          like:Random.integer(1,999),
@@ -163,6 +176,7 @@ let comment = {
          cname:Random.csentence(1,5),
          comment:Random.csentence(10,100),
          time:Random.datetime('MM-dd'),
+         ulog:Random.csentence(1,10),//用户签名
      }
      wd.push(wd1)
  }
@@ -259,7 +273,8 @@ let comment = {
         topimg1:topimg1,
         comment:comment,
         img:img,
-        wd:wd
+        wd:wd,
+        hd:hd
     }
 
 }

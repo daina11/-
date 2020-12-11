@@ -22,7 +22,7 @@
            <b-nav-item active-class="active" to="/article">文章</b-nav-item>
            <b-nav-item active-class="active" to="/interest">兴趣</b-nav-item>
            <b-nav-item  active-class="active"  to="/wenda">问答</b-nav-item>
-           <b-nav-item  active-class="active"  to="/huodong">活动</b-nav-item>
+           <b-nav-item  active-class="active"  to="/activity">活动</b-nav-item>
            <b-nav-item   active-class="active" to="/xianzhi">闲置</b-nav-item>
           </b-nav>
         </div>

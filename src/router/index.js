@@ -10,6 +10,9 @@ import interest_detail from '@/pages/interest_detail'
 import post_interest from '@/pages/post_interest'
 import wenda from '@/pages/wenda'
 import post_question from '@/pages/post_question'
+import wenda_detail from '@/pages/wenda_detail'
+import activity from '@/pages/activity'
+import activity_detail from '@/pages/activity_detail'
 Vue.use(Router)
 
 export default new Router({
@@ -63,6 +66,21 @@ export default new Router({
       path: '/post_question',
       name: 'post_question',
       component: post_question
+    },
+    {
+      path: '/wenda_detail',
+      name: 'wenda_detail',
+      component: wenda_detail
+    },
+    {
+      path: '/activity',
+      name: 'activity',
+      component: activity
+    },
+    {
+      path: '/activity_detail',
+      name: 'activity_detail',
+      component: activity_detail
     },
   ]
 })

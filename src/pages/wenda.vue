@@ -19,7 +19,7 @@
         <div class="col-2"></div>
         <div class="col-8">
           <div class="ask"><div>你想问什么？</div> <b-link href="/post_question" target="_blank"> <el-button type="primary" round>提问</el-button></b-link></div>
-          <div class="wenti" v-for="(item,index) in wt">
+          <div class="wenti" v-for="(item,index) in wt"   @click="toDetail(item.id)">
             <el-card shadow="hover">
               <div class="wt_title">{{item.title}}</div>
               <div class="wt_detail">{{item.content}}</div>
@@ -67,6 +67,7 @@
         <div class="col-2"></div>
       </div>
     </div>
+    <v-backtop></v-backtop>
     <v-footer></v-footer>
   </div>
 </template>
@@ -74,6 +75,7 @@
 import axios from "axios";
 import vHead from "../components/head";
 import vFooter from "../components/footer";
+import vBacktop from "../components/backtop";
 export default {
   data() {
     return {
@@ -82,18 +84,26 @@ export default {
   },
   components: {
     vFooter,
-    vHead
+    vHead,
+    vBacktop
   },
   created() {
     axios
       .get("msg", {})
       .then(res => {
         this.wt = res.data.wd;
-        console.log(res.data.wd);
       })
       .catch(err => {});
   },
-  methods: {}
+  methods: {
+      toDetail(id){
+          console.log(id)
+        this.$router.push({
+        path: "wenda_detail",
+        query: { id: id }
+      });
+      }
+  }
 };
 </script>
 <style scoped lang="scss">

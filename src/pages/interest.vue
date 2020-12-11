@@ -42,7 +42,7 @@
         <div class="interset-content">
           <div class="interset-main">{{item.content}}</div>
           <div class="interset-img">
-            <!-- <b-img v-for="(item,index) in jimg" :key="index" :src="item.img" block="true"></b-img> -->
+            <el-image v-for="(item,index)  in jimg" :key="index" :src="item.img" block="true"  :fit="fill" style="width: 100px; height: 100px;padding:5px;"></el-image>
           </div>
         </div>
         <div class="interset-content-footer">
