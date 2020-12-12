@@ -161,6 +161,7 @@ let comment = {
     renshu:Random.integer(1,999),//活动人数
     jianjie:Random.csentence(5, 300),//活动简介
     img: Random.dataImage(),//背景图
+    time:Random.datetime('MM-dd'),
 
  }]
  for(let i =1;i<=9;i++){

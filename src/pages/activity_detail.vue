@@ -22,6 +22,20 @@
             <div class="title">{{activity.title}}</div>
             <div class="ptime">发布时间：{{activity.ptime}}</div>
           </div>
+          <div class="center">
+            <span>活动时间</span>
+            <div>{{activity.time}}</div>
+            <div class="rs">招募人数</div>
+            <div>{{activity.renshu}}人</div>
+            <div class="dz">地址</div>
+            <div>{{activity.dizhi}}</div>
+          </div>
+          <div class="bottom">
+            <div class="b-top">活动介绍</div>
+            <div class="b-main">
+              <v-html>{{activity.jianjie}}</v-html>
+            </div>
+          </div>
           <div class="col-2"></div>
         </div>
       </div>
@@ -65,19 +79,55 @@ export default {
 <style scoped lang="scss">
 .container {
   margin-top: 20px;
-  .top{
-      border-bottom: 1px solid #e5e5e5;
-      padding-top: 10px;
-      padding-bottom: 30px;
+  .bottom {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    .b-main{
+      margin-top: 20px;
+    }
+    .b-top {
+      font-size: 14px;
+      color: #333333;
+    }
+  }
+  .center {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5;
+    .rs {
+      font-size: 14px;
+      color: #666666;
+      margin-top: 30px;
+    }
+    .dz {
+      font-size: 14px;
+      color: #666666;
+      margin-top: 30px;
+    }
+    padding-top: 20px;
+    span {
+      font-size: 14px;
+      color: #666666;
+    }
+    div {
+      margin-top: 5px;
+      font-size: 18px;
+      color: #333333;
+    }
+  }
+  .top {
+    border-bottom: 1px solid #e5e5e5;
+    padding-top: 10px;
+    padding-bottom: 30px;
   }
   .title {
     font-size: 40px;
     color: #0f2540;
     line-height: 56px;
   }
-  .ptime{
-      font-size: 14px;
-    color: #0F2540;
+  .ptime {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #0f2540;
   }
 }
 .main {
