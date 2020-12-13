@@ -53,10 +53,13 @@
                         style="margin-top:50px;"
                         content
                       >
-                        <div>
-                          <b-link>个人中心</b-link>
+                        <div class="geren">
+                           <el-link href="/my_detail" target="_blank" class="el-icon-user-solid" :underline="false">个人中心</el-link>
                         </div>
-                        <el-button>退出登陆</el-button>
+                        <div class="tuichu">
+                          <el-link  class="el-icon-switch-button"  @click="logout" :underline="false">退出登陆</el-link>
+                        </div>
+                        
                         <div slot="reference">
                           <img src="../assets/img/tx.png" alt />
                         </div>
@@ -205,6 +208,9 @@ export default {
   },
   components: {},
   methods: {
+    logout(){
+      //退出登陆
+    },
     onSubmit() {
       //登陆
       console.log(this.dlform);
@@ -235,6 +241,15 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.geren{
+  margin-bottom: 10px;
+  text-align: center
+}
+.tuichu{
+  text-align: center;
+  margin-top: 5px;
+   margin-bottom: 5px;
+}
 .gozhuce {
   margin-left: 35%;
 }
@@ -278,7 +293,7 @@ header {
   font-weight: bold;
   font-size: 15px;
   min-width: 490px;
-  left: 15%;
+  left: 10%;
   margin: 1px;
   a {
     color: #9c9c9c;

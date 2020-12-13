@@ -231,10 +231,13 @@ let comment = {
 
     for (let i =1 ;i<=5;i++){
         let newyonghu={
-            txurl:Random.dataImage('100x100'),
+            txurl:Random.dataImage(),
             time:Random.datetime('yyyy-MM-dd A HH:mm'),//时间，
             content: Random.csentence(10, 20),//评论内容
             username: Random.word(3, 8),//评论内容
+            sigin: Random.csentence(10, 20),//签名
+            email:Random.email(),
+            sex:'1'
         }
         yonghu.push(newyonghu)
     }

@@ -13,6 +13,8 @@ import post_question from '@/pages/post_question'
 import wenda_detail from '@/pages/wenda_detail'
 import activity from '@/pages/activity'
 import activity_detail from '@/pages/activity_detail'
+import xianzhi from '@/pages/xianzhi'
+import my_detail from '@/pages/my_detail'
 Vue.use(Router)
 
 export default new Router({
@@ -81,6 +83,16 @@ export default new Router({
       path: '/activity_detail',
       name: 'activity_detail',
       component: activity_detail
+    },
+    {
+      path: '/xianzhi',
+      name: 'xianzhi',
+      component: xianzhi
+    },
+    {
+      path: '/my_detail',
+      name: 'my_detail',
+      component: my_detail
     },
   ]
 })
