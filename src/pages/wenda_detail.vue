@@ -29,7 +29,7 @@
               <div class="top-r">
                 <div class="p-name">{{question.pname}}</div>
                 <div class="p-log">{{question.ulog}}</div>
-                <div class="content">{{question.content}}</div>
+                <div class="content1">{{question.content}}</div>
                 <div class="m-bottom">
                   <div>
                     <i class="iconfont icon-fabulous">
@@ -244,7 +244,7 @@ export default {
           color: #C9D6DE;
         margin-bottom: 20px;
       }
-      .content {
+      .content1 {
           font-family:"PingFang SC";
           
           font-size: large;

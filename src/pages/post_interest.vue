@@ -83,6 +83,13 @@ export default {
     // },
     //上传内容和返回的图片连接
       sub(){
+         if(  localStorage.getItem("login")==null|| localStorage.getItem("login")=='false'){
+         this.$message({
+          message: '请先登陆！',
+          type: 'warning',
+          offset:"80"
+        });
+      }else{
         axios.post("http://10.12.181.136/api/base/upload",{
           data:{
             imgurl:this.fileList,
@@ -93,6 +100,8 @@ export default {
         }).catch(err=>{
 
         })
+      }
+        
           console.log(this.textarea)
       }
   }

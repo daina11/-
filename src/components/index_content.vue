@@ -116,7 +116,7 @@ export default {
     };
   },
   created(){
-      axios.get('http://xx.com/api/Index/get_index_data').then(res=>{
+      axios.get('http://192.168.206.1/api/Index/get_index_data').then(res=>{
             this.firstCol=res.data.articles
             this.Lcard=this.firstCol[0];
             })

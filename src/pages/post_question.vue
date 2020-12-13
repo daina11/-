@@ -58,7 +58,14 @@ export default {
   methods: {
     sub() {
       //提交内容
-      axios.post("",{
+       if(  localStorage.getItem("login")==null|| localStorage.getItem("login")=='false'){
+         this.$message({
+          message: '请先登陆！',
+          type: 'warning',
+          offset:"80"
+        });
+      }else{
+  axios.post("",{
           data:{
               title:this.title,
               content:this.textarea
@@ -68,6 +75,8 @@ export default {
       }).catch(res=>{
 
       })
+      }
+    
     }
   }
 };

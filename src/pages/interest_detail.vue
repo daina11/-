@@ -136,6 +136,22 @@ export default {
   },
     methods: {
       postcomment(){
+        if(  localStorage.getItem("login")==null|| localStorage.getItem("login")=='false'){
+         this.$message({
+          message: '请先登陆！',
+          type: 'warning',
+          offset:"80"
+        });
+      }else{
+        //上传评论
+        axios.post("",{
+
+        }).then(res=>{
+
+        }).catch(err=>{
+          
+        })
+      }
         console.log(this.newcomment)
       }
     }

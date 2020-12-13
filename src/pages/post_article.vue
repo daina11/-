@@ -91,7 +91,7 @@ export default {
         title: "",
         //文章分类的id
         region: "",
-        login: this.$global.login,
+        login: "",
       }
     };
   },
@@ -102,7 +102,8 @@ export default {
     vFuwenben
   },
   created() {
-    console.log(JSON.parse(localStorage.getItem("tx")))
+     this.login = localStorage.getItem("login");
+
     axios.post("http://10.12.181.136/api/article/get_article_list").then(res => {
       this.fenlei = res.data.column_list;
     });
@@ -120,7 +121,14 @@ export default {
     },
     //发布文章标题和选择分类
     onSubmit() {
-      axios.post("http://10.12.181.136/api/article/add_article",{
+      if(  localStorage.getItem("login")==null|| localStorage.getItem("login")=='false'){
+         this.$message({
+          message: '请先登陆！',
+          type: 'warning',
+          offset:"80"
+        });
+      }else{
+         axios.post("http://10.12.181.136/api/article/add_article",{
         data:{
           data:this.form+this.fwb+this.bannerUrl
         }
@@ -138,6 +146,8 @@ export default {
           offset:"80"
         });
         });
+      }
+     
       console.log(this.form.title+this.form.region+this.fwb+this.bannerUrl);
       // console.log(this.fwb)
       // console.log(this.bannerUrl)

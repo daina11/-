@@ -172,7 +172,14 @@ export default {
       window.open(routeData.href, "_blank");
     },
     submit() {
-      if (document.getElementById("exampleFormControlTextarea1").value != "") {
+        if(  localStorage.getItem("login")==null|| localStorage.getItem("login")=='false'){
+         this.$message({
+          message: '请先登陆！',
+          type: 'warning',
+          offset:"80"
+        });
+      }else{
+         if (document.getElementById("exampleFormControlTextarea1").value != "") {
         // 提交评论
         //msg换成后台地址
         axios
@@ -206,6 +213,8 @@ export default {
           offset:"80"
         });
       }
+      }
+     
     }
   },
   created() {
