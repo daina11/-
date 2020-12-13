@@ -34,16 +34,13 @@
 </template>
 
 <script>
+import axios from 'axios';
   export default {
     data() {
       return {
         slide: 0,
         sliding: null,
-        img:[
-					{url:'https://picsum.photos/1024/480/?image=52'},
-          {url:'https://picsum.photos/1024/480/?image=54'},
-          {url:'https://picsum.photos/1024/480/?image=58'},
-				]
+        img:{}
       };
     },
     methods: {
@@ -53,6 +50,15 @@
       onSlideEnd(slide) {
         this.sliding = false
       }
+    },
+    created(){
+      axios.get("http://xx.com/api/Index/get_index_data",{
+
+      }).then(res=>{
+        this.img=res.banner_list
+      }).catch(err=>{
+
+      })
     }
   }
 </script>

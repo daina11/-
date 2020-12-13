@@ -164,6 +164,14 @@ let comment = {
     time:Random.datetime('MM-dd'),
 
  }]
+
+ //登陆的用户
+let user=[{
+    id:Random.integer(1,999),
+    tx: Random.dataImage(),//头像
+    token:Random.string( 'lower',15,15 )
+}]
+
  for(let i =1;i<=9;i++){
      let wd1={
          id:i,
@@ -278,7 +286,8 @@ let comment = {
         comment:comment,
         img:img,
         wd:wd,
-        hd:hd
+        hd:hd,
+        user:user
     }
 
 }

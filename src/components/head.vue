@@ -28,23 +28,25 @@
             <!-- 搜索列表 -->
             <b-col cols="2">
               <div class="login" :class="issearch?'rLeft':'rLeft1'">
-                <div v-if="login" class="no-login">
+                <div v-show="login=='true'||login==null" class="no-login">
                   <div v-if!="issearch" @click="showSearchMethods" v-if="showSearch1">
                     <i v-on:click="issearch = !issearch" class="sicon iconfont icon-search"></i>
                   </div>
                   <div class="login-text">
                     <div class="msg">
-                    <el-popover
-                      placement="bottom-start"
-                      width="150"
-                      trigger="hover"
-                      style="margin-top:50px;"
-                      content="没有更多消息"
-                    >
-                      <div  slot="reference">
-                        <i class="ismsg iconfont icon-comment" ></i>
-                      </div></el-popover></div>
-                    </el-popover>
+                      <el-popover
+                        placement="bottom-start"
+                        width="150"
+                        trigger="hover"
+                        style="margin-top:50px;"
+                        content="没有更多消息"
+                      >
+                        <div slot="reference">
+                          <i class="ismsg iconfont icon-comment"></i>
+                        </div>
+                      </el-popover>
+                    </div>
+
                     <div class="my">
                       <el-popover
                         placement="bottom-start"
@@ -54,24 +56,33 @@
                         content
                       >
                         <div class="geren">
-                           <el-link href="/my_detail" target="_blank" class="el-icon-user-solid" :underline="false">个人中心</el-link>
+                          <el-link
+                            href="/my_detail"
+                            target="_blank"
+                            class="el-icon-user-solid"
+                            :underline="false"
+                          >个人中心</el-link>
                         </div>
                         <div class="tuichu">
-                          <el-link  class="el-icon-switch-button"  @click="logout" :underline="false">退出登陆</el-link>
+                          <el-link
+                            class="el-icon-switch-button"
+                            @click="logout"
+                            :underline="false"
+                          >退出登陆</el-link>
                         </div>
-                        
+
                         <div slot="reference">
-                          <img src="../assets/img/tx.png" alt />
+                          <img :src="tx" alt />
                         </div>
                       </el-popover>
                     </div>
                   </div>
                 </div>
-                <div v-else="login" class="no-login">
+                <div v-show="login=='false'" class="no-login">
                   <div v-if!="issearch" @click="showSearchMethods" v-if="showSearch1">
                     <i v-on:click="issearch = !issearch" class="sicon iconfont icon-search"></i>
                   </div>
-                  <div class="login-text" @click="dialogFormVisible = true">没登陆</div>
+                  <div class="login-text" @click="dialogFormVisible = true">登陆</div>
                 </div>
               </div>
             </b-col>
@@ -179,10 +190,11 @@ export default {
       ftitle: "潮玩登陆",
       zhuce: false,
       denglu: true,
-      login: true,
+      login: localStorage.getItem("login"),
       issearch: false,
       showSearch1: true,
       dialogFormVisible: false,
+      tx: JSON.parse(localStorage.getItem("tx")),
 
       //登陆表单
       dlform: {
@@ -207,21 +219,88 @@ export default {
     };
   },
   components: {},
+  created() {
+    console.log(this.login);
+  },
   methods: {
-    logout(){
+    logout() {
       //退出登陆
+
+      window.localStorage.setItem("login", false);
+      this.login = localStorage.getItem("login");
+      localStorage.clear();
+      console.log(localStorage.getItem("token"));
     },
     onSubmit() {
       //登陆
       console.log(this.dlform);
       axios
         .get("msg", {})
-        .then(res => {})
-        .catch(err => {});
+        .then(res => {
+          //获取头像
+          window.localStorage.setItem(
+            "tx",
+            JSON.stringify(res.data.user[0].tx)
+          );
+          this.tx = JSON.parse(localStorage.getItem("tx"));
+
+          //获取登陆状态
+          window.localStorage.setItem("login", true);
+          this.login = localStorage.getItem("login");
+
+          //token
+          window.localStorage.setItem(
+            "token",
+            JSON.stringify(res.data.user[0].token)
+          );
+
+          window.localStorage.setItem(
+            "userid",
+            JSON.stringify(res.data.user[0].id)
+          );
+          console.log(localStorage.getItem("userid"));
+          // this.$global.token = res.data.user[0].token;
+          // this.$global.uid = res.data.user[0].id;
+          // this.$global.tx = res.data.user[0].tx;
+          // this.$global.login = true;
+          // this.tx = global.tx;
+          // this.login = true;
+          this.$message({
+            message: "登陆成功！",
+            type: "success",
+            offset: "80"
+          });
+          this.dialogFormVisible = false;
+          // console.log(  global.token)
+        })
+        .catch(err => {
+          console.log(windows.localStorage.getData("tx"));
+          this.$message({
+            message: "登陆失败",
+            type: "warning",
+            offset: "80"
+          });
+        });
     },
     onZhuce() {
       //注册
       console.log(this.zcform);
+      axios
+        .post("", {})
+        .then(res => {
+          this.$message({
+            message: "注册成功！",
+            type: "success",
+            offset: "80"
+          });
+        })
+        .catch(err => {
+          this.$message({
+            message: "注册失败",
+            type: "warning",
+            offset: "80"
+          });
+        });
     },
     denglu1() {
       this.denglu = false;
@@ -241,14 +320,14 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-.geren{
+.geren {
   margin-bottom: 10px;
-  text-align: center
+  text-align: center;
 }
-.tuichu{
+.tuichu {
   text-align: center;
   margin-top: 5px;
-   margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 .gozhuce {
   margin-left: 35%;

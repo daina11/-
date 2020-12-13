@@ -90,7 +90,8 @@ export default {
         //文章标题
         title: "",
         //文章分类的id
-        region: ""
+        region: "",
+        login: this.$global.login,
       }
     };
   },
@@ -101,6 +102,7 @@ export default {
     vFuwenben
   },
   created() {
+    console.log(JSON.parse(localStorage.getItem("tx")))
     axios.post("http://10.12.181.136/api/article/get_article_list").then(res => {
       this.fenlei = res.data.column_list;
     });

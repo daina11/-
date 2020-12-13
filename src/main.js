@@ -12,9 +12,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import axios from 'axios';
 import mockdata from "./router/mockjs";
-
+import global from "./router/Global"
 import Vuex from 'vuex'
-
+Vue.prototype.$global=global
 Vue.use(Vuex)
 Vue.prototype.$axios =axios;
 Vue.config.productionTip = false

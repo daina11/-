@@ -74,6 +74,7 @@ export default {
     vCategory
   },
   created() {
+    console.log(  global.token)
     this.loading = true;
     axios
       .get("ms", {
